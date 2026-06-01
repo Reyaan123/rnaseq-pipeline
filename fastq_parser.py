@@ -5,7 +5,6 @@ if len(sys.argv) < 2:
 filename = sys.argv[1]
 
 i=0
-x=0
 sequences=[]
 quality=[]
 with open(filename, "r") as f:
@@ -22,3 +21,15 @@ print("Sequences:")
 for seq, qual in zip(sequences, quality):
      print(seq , len(seq) ,"bp")
      print(f"Quality: {qual}")
+     scores = [ord(char) - 33 for char in qual]
+     avgscore = sum(scores)/len(scores)
+     print (f"Average Quality: {round(avgscore,2)}")
+     if avgscore == 40:
+        print ("Perfect Score - PASS")
+     elif avgscore > 30:
+         print("Good Quality - PASS")
+     elif avgscore > 20:
+         print("Mediocre - FAIL")
+     else:
+         print ("Poor Quality - FAIL")
+         
