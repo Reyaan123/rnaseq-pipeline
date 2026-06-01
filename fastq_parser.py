@@ -1,4 +1,7 @@
 import sys
+if len(sys.argv) < 2:
+    print("Usage: python fastq_parser.py <filename>")
+    sys.exit(1)
 filename = sys.argv[1]
 
 i=0
