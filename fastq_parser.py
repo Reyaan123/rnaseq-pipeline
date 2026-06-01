@@ -5,7 +5,9 @@ if len(sys.argv) < 2:
 filename = sys.argv[1]
 
 i=0
+x=0
 sequences=[]
+quality=[]
 with open(filename, "r") as f:
  
    
@@ -13,8 +15,10 @@ with open(filename, "r") as f:
         i+=1
         if i%4==2:
             sequences.append(line.strip())
+        if i%4==0:
+            quality.append(line.strip())
 print(f"Total Lines: {i} \nTotal reads: {i//4} ")
 print("Sequences:")
-for seq in sequences:
+for seq, qual in zip(sequences, quality):
      print(seq , len(seq) ,"bp")
-    
+     print(f"Quality: {qual}")
