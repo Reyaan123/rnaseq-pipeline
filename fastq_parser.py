@@ -4,12 +4,15 @@ if len(sys.argv) < 2:
     sys.exit(1)
 filename = sys.argv[1]
 
-i=0
+i=1
 sequences=[]
 quality=[]
 with open(filename, "r") as f:
  
-   
+    first_line = f.readline()
+    if not first_line.startswith("@"):
+        print("Error: this does not appear to be a valid FASTQ file")
+        sys.exit(1)
     for line in f:
         i+=1
         if i%4==2:
