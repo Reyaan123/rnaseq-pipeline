@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Environments
+venv/
+env/
+.conda/
+
+# Data files (too large for GitHub)
+*.fastq
+*.fastq.gz
+*.bam
+*.sam
+*.fasta
+
+# Secrets
+*.pem
+*.key
+secrets.json
+config.ini
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
