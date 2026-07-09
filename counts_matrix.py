@@ -1,6 +1,7 @@
 # Counts matrix: genes x samples
 # Rows = genes, Columns = samples (healthy1, healthy2, cancer1, cancer2)
-
+import math
+from scipy import stats
 counts = {
     "GeneA": [2, 3, 8, 9],
     "GeneB": [5, 4, 2, 1],
@@ -30,7 +31,7 @@ for gene, values in counts.items():
         print(f"{cpm:>12.1f}", end="")
     print()
 
-    import math
+    
 
 # Log2 transform the CPM values
 print("\nLog2 CPM values:")
@@ -46,3 +47,17 @@ for gene, values in counts.items():
         log2cpm = math.log2(cpm + 1)
         print(f"{log2cpm:>12.2f}", end="")
     print() 
+
+
+# Statistical testing: t-test between healthy and cancer
+print("\nDifferential expression results:")
+print(f"{'Gene':<10} {'mean_healthy':>14} {'mean_cancer':>12} {'p-value':>10}")
+for gene, values in counts.items():
+    healthy_vals= [values[0], values[1]]
+    cancer_vals = [values[2], values[3]]
+
+    healthy_cpm = [(v / totals[i]) * 1_000_000 for i, v in enumerate(healthy_vals)]
+    cancer_cpm = [(v / totals[i+2]) * 1_000_000 for i, v in enumerate(cancer_vals)]
+    t_stat, p_value = stats.ttest_ind(healthy_cpm, cancer_cpm)
+    
+    print(f"{gene:<10} {sum(healthy_cpm)/len(healthy_cpm):>14.1f} {sum(cancer_cpm)/len(cancer_cpm):>12.1f} {p_value:>10.4f}")
