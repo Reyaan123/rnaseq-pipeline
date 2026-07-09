@@ -60,4 +60,6 @@ for gene, values in counts.items():
     cancer_cpm = [(v / totals[i+2]) * 1_000_000 for i, v in enumerate(cancer_vals)]
     t_stat, p_value = stats.ttest_ind(healthy_cpm, cancer_cpm)
     
+    if p_value >=0.05:
+        continue
     print(f"{gene:<10} {sum(healthy_cpm)/len(healthy_cpm):>14.1f} {sum(cancer_cpm)/len(cancer_cpm):>12.1f} {p_value:>10.4f}")
