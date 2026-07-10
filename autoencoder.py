@@ -38,3 +38,7 @@ while x<101:
     if x%10 == 0:
         print(f"Epoch {x}, Loss: {loss.item():.4f}")
     x=x+1
+
+with torch.no_grad():
+    modencoder = model.encoder(data)
+    print (modencoder)
