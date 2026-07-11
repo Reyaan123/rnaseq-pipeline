@@ -20,3 +20,9 @@ conn.commit()
 cursor.execute("SELeCT * FROM expression_results")
 results = cursor.fetchall()
 print (results)
+
+cursor.execute ("""SELECT *FROM expression_results
+                WHERE p_value < 0.05 Order BY p_value ASC
+                """)  
+lowp_value= cursor.fetchall
+print (lowp_value)
