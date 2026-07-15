@@ -27,4 +27,4 @@ config.ini
 Thumbs.db
 
 # Jupyter
-.ipynb_checkpoints/
+.ipynb_checkpoints/.env 
