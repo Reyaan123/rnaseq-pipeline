@@ -10,7 +10,7 @@ ground_cols = ["SMC-G-E1_S5", "SMC-G-E2_S6", "SMC-G-E3_S7"]
 
 df[flight_cols + ground_cols] = df[flight_cols + ground_cols].apply(lambda x: x.apply(lambda v: math.log2(v+1)))
 
-def ttest_row(row)
+def ttest_row(row);
     flight_vals = row[flight_cols]
     ground_vals = row[ground_cols]
     t_stat, p_value = stats.ttest_ind(flight_vals, ground_vals, equal_var=False)
